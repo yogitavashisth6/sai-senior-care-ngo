@@ -450,162 +450,222 @@
             </button>
             <div class="faq-answer" style="display: block; overflow: visible;">
                 <p style="margin-top: 15px;">Share your valuable time, special skills, or a warm conversation with our elders. Fill out the form below to join our family of volunteers:</p>
-                <form style="margin-top: 15px; text-align: left;">
-    <!-- 1. Personal Details -->
-    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 15px; text-align: left;">1. Personal Information</h4>
-    
-    <div class="grid-2">
-        <div>
-            <label style="display: block; text-align: left;"><strong>Full Name: *</strong></label>
-            <input type="text" placeholder="Enter your full name" required style="width: 100%; box-sizing: border-box;">
-        </div>
-        <div>
-            <label style="display: block; text-align: left;"><strong>Contact Number: *</strong></label>
-            <input type="tel" placeholder="Enter phone number" required style="width: 100%; box-sizing: border-box;">
-        </div>
-    </div>
+                
+                <!-- Added id="volunteerForm" for MySQL fetch handler -->
+                <form id="volunteerForm" style="margin-top: 15px; text-align: left;">
+                    
+                    <!-- 1. Personal Details -->
+                    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 15px; text-align: left;">1. Personal Information</h4>
+                    
+                    <div class="grid-2">
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Full Name: *</strong></label>
+                            <input type="text" name="fullName" placeholder="Enter your full name" required style="width: 100%; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Contact Number: *</strong></label>
+                            <input type="tel" name="contactNumber" placeholder="Enter phone number" required style="width: 100%; box-sizing: border-box;">
+                        </div>
+                    </div>
 
-    <div class="grid-2">
-        <div>
-            <label style="display: block; text-align: left;"><strong>Email Address: *</strong></label>
-            <input type="email" placeholder="Enter email address" required style="width: 100%; box-sizing: border-box;">
-        </div>
-        <div>
-            <label style="display: block; text-align: left;"><strong>Emergency Contact Number: *</strong></label>
-            <input type="tel" placeholder="Enter emergency contact number" required style="width: 100%; box-sizing: border-box;">
-        </div>
-    </div>
+                    <div class="grid-2">
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Email Address: *</strong></label>
+                            <input type="email" name="email" placeholder="Enter email address" required style="width: 100%; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Emergency Contact Number: *</strong></label>
+                            <input type="tel" name="emergencyContact" placeholder="Enter emergency contact number" required style="width: 100%; box-sizing: border-box;">
+                        </div>
+                    </div>
 
-    <div class="grid-2">
-        <div>
-            <label style="display: block; text-align: left;"><strong>College / University / Organization Name: *</strong></label>
-            <input type="text" placeholder="Enter college or company name" required style="width: 100%; box-sizing: border-box;">
-        </div>
-        <div>
-            <label style="display: block; text-align: left;"><strong>Year of Study / Current Profession:</strong></label>
-            <input type="text" placeholder="e.g., 2nd Year B.Sc / Software Engineer" style="width: 100%; box-sizing: border-box;">
-        </div>
-    </div>
+                    <div class="grid-2">
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>College / University / Organization Name: *</strong></label>
+                            <input type="text" name="organization" placeholder="Enter college or company name" required style="width: 100%; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Year of Study / Current Profession:</strong></label>
+                            <input type="text" name="profession" placeholder="e.g., 2nd Year B.Sc / Software Engineer" style="width: 100%; box-sizing: border-box;">
+                        </div>
+                    </div>
 
-    <!-- 2. Schedule & Group Logistics -->
-    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">2. Visit Schedule & Group Logistics</h4>
-    
-    <div class="grid-2">
-        <div>
-            <label style="display: block; text-align: left;"><strong>Scheduled Date of Visit: *</strong></label>
-            <input type="date" required style="width: 100%; box-sizing: border-box;">
-        </div>
-        <div>
-            <label style="display: block; text-align: left;"><strong>Preferred Time Slot: *</strong></label>
-            <select required style="width: 100%; box-sizing: border-box;">
-                <option value="" disabled selected>Select a time slot</option>
-                <option value="morning">Morning (9:00 AM – 12:00 PM)</option>
-                <option value="afternoon">Afternoon (12:00 PM – 3:00 PM)</option>
-                <option value="evening">Evening (3:00 PM – 6:00 PM)</option>
-            </select>
-        </div>
-    </div>
+                    <!-- 2. Schedule & Group Logistics -->
+                    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">2. Visit Schedule & Group Logistics</h4>
+                    
+                    <div class="grid-2">
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Scheduled Date of Visit: *</strong></label>
+                            <input type="date" name="visitDate" required style="width: 100%; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Preferred Time Slot: *</strong></label>
+                            <select name="timeSlot" required style="width: 100%; box-sizing: border-box;">
+                                <option value="" disabled selected>Select a time slot</option>
+                                <option value="Morning (9:00 AM – 12:00 PM)">Morning (9:00 AM – 12:00 PM)</option>
+                                <option value="Afternoon (12:00 PM – 3:00 PM)">Afternoon (12:00 PM – 3:00 PM)</option>
+                                <option value="Evening (3:00 PM – 6:00 PM)">Evening (3:00 PM – 6:00 PM)</option>
+                            </select>
+                        </div>
+                    </div>
 
-    <div class="grid-2">
-        <div>
-            <label style="display: block; text-align: left;"><strong>Participation Type: *</strong></label>
-            <select required style="width: 100%; box-sizing: border-box;">
-                <option value="individual">Individual Volunteer</option>
-                <option value="group">Group / Academic Team</option>
-            </select>
-        </div>
-        <div>
-            <label style="display: block; text-align: left;"><strong>Total Number of Group Members:</strong></label>
-            <input type="number" min="1" value="1" placeholder="Enter total members (if group visit)" style="width: 100%; box-sizing: border-box;">
-        </div>
-    </div>
+                    <div class="grid-2">
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Participation Type: *</strong></label>
+                            <select name="participationType" required style="width: 100%; box-sizing: border-box;">
+                                <option value="Individual Volunteer">Individual Volunteer</option>
+                                <option value="Group / Academic Team">Group / Academic Team</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; text-align: left;"><strong>Total Number of Group Members:</strong></label>
+                            <input type="number" name="groupMembers" min="1" value="1" placeholder="Enter total members (if group visit)" style="width: 100%; box-sizing: border-box;">
+                        </div>
+                    </div>
 
-    <label style="display: block; text-align: left; margin-top: 10px;"><strong>Names & Contact Details of Additional Group Members (if applicable):</strong></label>
-    <textarea placeholder="List member names and phone numbers" rows="2" style="width: 100%; box-sizing: border-box;"></textarea>
+                    <label style="display: block; text-align: left; margin-top: 10px;"><strong>Names & Contact Details of Additional Group Members (if applicable):</strong></label>
+                    <textarea name="additionalGroupDetails" placeholder="List member names and phone numbers" rows="2" style="width: 100%; box-sizing: border-box;"></textarea>
 
-    <!-- 3. Volunteer Activities & Contributions -->
-    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">3. Areas of Contribution</h4>
-    <label style="display: block; text-align: left; margin-bottom: 10px;"><strong>Which activities would you like to assist with? (Select all that apply)</strong></label>
-    <div class="checkbox-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%;">
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="checkbox" value="Interaction" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>Interaction & Companionship (Listening to life stories, conversing)</span>
-        </label>
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="checkbox" value="Cooking" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>Cooking & Meal Preparation Assistance</span>
-        </label>
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="checkbox" value="Food Service" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>Food Service & Dining Support</span>
-        </label>
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="checkbox" value="Cleaning" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>Facility Maintenance (Light cleaning, organizing, gardening)</span>
-        </label>
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="checkbox" value="Recreation" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>Recreational Activities (Singing, drawing, games, music)</span>
-        </label>
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="checkbox" value="Wellness" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>Health & Wellness (Gentle exercises, yoga assistance)</span>
-        </label>
-    </div>
+                    <!-- 3. Volunteer Activities & Contributions -->
+                    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">3. Areas of Contribution</h4>
+                    <label style="display: block; text-align: left; margin-bottom: 10px;"><strong>Which activities would you like to assist with? (Select all that apply)</strong></label>
+                    <div class="checkbox-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%;">
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="checkbox" name="contributionAreas" value="Interaction & Companionship" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>Interaction & Companionship (Listening to life stories, conversing)</span>
+                        </label>
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="checkbox" name="contributionAreas" value="Cooking & Meal Preparation" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>Cooking & Meal Preparation Assistance</span>
+                        </label>
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="checkbox" name="contributionAreas" value="Food Service" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>Food Service & Dining Support</span>
+                        </label>
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="checkbox" name="contributionAreas" value="Facility Maintenance" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>Facility Maintenance (Light cleaning, organizing, gardening)</span>
+                        </label>
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="checkbox" name="contributionAreas" value="Recreational Activities" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>Recreational Activities (Singing, drawing, games, music)</span>
+                        </label>
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="checkbox" name="contributionAreas" value="Health & Wellness" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>Health & Wellness (Gentle exercises, yoga assistance)</span>
+                        </label>
+                    </div>
 
-    <!-- 4. Experience & Skills -->
-    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">4. Experience & Special Skills</h4>
-    <label style="display: block; text-align: left; margin-bottom: 10px;"><strong>Have you volunteered at a care facility or community center before?</strong></label>
-    <div class="radio-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%;">
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="radio" name="past_exp" value="Yes" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>Yes</span>
-        </label>
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="radio" name="past_exp" value="No" checked style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>No</span>
-        </label>
-    </div>
+                    <!-- 4. Experience & Skills -->
+                    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">4. Experience & Special Skills</h4>
+                    <label style="display: block; text-align: left; margin-bottom: 10px;"><strong>Have you volunteered at a care facility or community center before?</strong></label>
+                    <div class="radio-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%;">
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="radio" name="pastExperience" value="Yes" style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>Yes</span>
+                        </label>
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="radio" name="pastExperience" value="No" checked style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>No</span>
+                        </label>
+                    </div>
 
-    <!-- 5. Health & Safety Declaration -->
-    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">5. Health & Safety Declaration</h4>
-    <label style="display: block; text-align: left; margin-bottom: 10px;"><strong>Do you currently have any flu-like or infectious symptoms (cough, cold, fever)? *</strong></label>
-    <div class="radio-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%;">
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="radio" name="health_symptoms" value="No" checked required style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>No, I am fully healthy</span>
-        </label>
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="radio" name="health_symptoms" value="Yes" required style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span>Yes</span>
-        </label>
-    </div>
+                    <!-- 5. Health & Safety Declaration -->
+                    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">5. Health & Safety Declaration</h4>
+                    <label style="display: block; text-align: left; margin-bottom: 10px;"><strong>Do you currently have any flu-like or infectious symptoms (cough, cold, fever)? *</strong></label>
+                    <div class="radio-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%;">
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="radio" name="healthSymptoms" value="No" checked required style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>No, I am fully healthy</span>
+                        </label>
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="radio" name="healthSymptoms" value="Yes" required style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span>Yes</span>
+                        </label>
+                    </div>
 
-    <!-- 6. Rules, Security & Respectful Engagement Terms -->
-    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">6. Rules, Security & Respectful Engagement Terms</h4>
-    <div class="terms-box" style="text-align: left;">
-        <strong>Please review our core community guidelines prior to acceptance:</strong>
-        <ul>
-            <li><strong>Respect & Dignity:</strong> Treat all senior residents with utmost patience, kindness, and emotional care. Maintain a gentle tone and avoid intrusive personal inquiries.</li>
-            <li><strong>Privacy & Photography:</strong> To protect resident dignity, taking photographs, recording videos, or publishing resident media online without prior staff approval is strictly prohibited.</li>
-            <li><strong>Security & Identity Verification:</strong> All visitors/volunteers must present a valid Government photo ID upon entry. Unauthorized visitors or unlisted group members are not permitted inside.</li>
-            <li><strong>Health & Food Safety:</strong> Outside food, drinks, or medications must NOT be handed directly to residents without permission from on-duty healthcare supervisors.</li>
-            <li><strong>Property & Safety Guidelines:</strong> Volunteers must stay within designated public/common areas, adhere to staff instructions, and handle facility property with care.</li>
-        </ul>
-    </div>
+                    <!-- 6. Rules, Security & Respectful Engagement Terms -->
+                    <h4 style="color: #2e4f4f; border-bottom: 2px solid #52796f; padding-bottom: 5px; margin-top: 20px; text-align: left;">6. Rules, Security & Respectful Engagement Terms</h4>
+                    <div class="terms-box" style="text-align: left;">
+                        <strong>Please review our core community guidelines prior to acceptance:</strong>
+                        <ul>
+                            <li><strong>Respect & Dignity:</strong> Treat all senior residents with utmost patience, kindness, and emotional care. Maintain a gentle tone and avoid intrusive personal inquiries.</li>
+                            <li><strong>Privacy & Photography:</strong> To protect resident dignity, taking photographs, recording videos, or publishing resident media online without prior staff approval is strictly prohibited.</li>
+                            <li><strong>Security & Identity Verification:</strong> All visitors/volunteers must present a valid Government photo ID upon entry. Unauthorized visitors or unlisted group members are not permitted inside.</li>
+                            <li><strong>Health & Food Safety:</strong> Outside food, drinks, or medications must NOT be handed directly to residents without permission from on-duty healthcare supervisors.</li>
+                            <li><strong>Property & Safety Guidelines:</strong> Volunteers must stay within designated public/common areas, adhere to staff instructions, and handle facility property with care.</li>
+                        </ul>
+                    </div>
 
-    <div class="checkbox-group" style="display: flex; flex-direction: column; align-items: flex-start; margin-top: 15px; width: 100%;">
-        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
-            <input type="checkbox" required style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
-            <span><strong>I agree to adhere to the code of conduct, respect resident privacy, and follow all safety guidelines provided by the foundation. *</strong></span>
-        </label>
-    </div>
+                    <div class="checkbox-group" style="display: flex; flex-direction: column; align-items: flex-start; margin-top: 15px; width: 100%;">
+                        <label style="display: flex; align-items: flex-start; gap: 10px; text-align: left; cursor: pointer; width: 100%;">
+                            <input type="checkbox" name="agreedTerms" value="Yes" required style="margin-top: 3px; flex-shrink: 0; width: auto; display: inline-block;">
+                            <span><strong>I agree to adhere to the code of conduct, respect resident privacy, and follow all safety guidelines provided by the foundation. *</strong></span>
+                        </label>
+                    </div>
 
-    <button type="submit" class="btn" style="margin-top: 20px;">Submit Volunteer Registration</button>
-</form></div>
+                    <button type="submit" class="btn" style="margin-top: 20px;">Submit Volunteer Registration</button>
+                </form>
+            </div>
         </div>
     </div>
 </section>
+
+<!-- JavaScript to handle MySQL Express Backend API POST Request -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('volunteerForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Collect selected checkbox values into an array
+      const selectedAreas = Array.from(
+        form.querySelectorAll('input[name="contributionAreas"]:checked')
+      ).map(cb => cb.value);
+
+      // Build data payload matching your MySQL database schema
+      const payload = {
+        fullName: form.querySelector('input[name="fullName"]').value,
+        contactNumber: form.querySelector('input[name="contactNumber"]').value,
+        email: form.querySelector('input[name="email"]').value,
+        emergencyContact: form.querySelector('input[name="emergencyContact"]').value,
+        organization: form.querySelector('input[name="organization"]').value,
+        profession: form.querySelector('input[name="profession"]').value,
+        visitDate: form.querySelector('input[name="visitDate"]').value,
+        timeSlot: form.querySelector('select[name="timeSlot"]').value,
+        participationType: form.querySelector('select[name="participationType"]').value,
+        groupMembers: form.querySelector('input[name="groupMembers"]').value,
+        additionalGroupDetails: form.querySelector('textarea[name="additionalGroupDetails"]').value,
+        contributionAreas: selectedAreas,
+        pastExperience: form.querySelector('input[name="pastExperience"]:checked')?.value || 'No',
+        healthSymptoms: form.querySelector('input[name="healthSymptoms"]:checked')?.value || 'No'
+      };
+
+      try {
+        // Adjust endpoint URL if host on cloud service (e.g., Render or Railway)
+        const response = await fetch('http://localhost:5000/api/volunteers/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          alert('Thank you! Your volunteer registration has been saved to the database.');
+          form.reset();
+        } else {
+          alert('Failed to submit registration: ' + (data.message || 'Server error'));
+        }
+      } catch (err) {
+        console.error('Submission Error:', err);
+        alert('Could not connect to the backend server. Please ensure Node.js server is running.');
+      }
+    });
+  });
+</script>
     <!-- 7. Photos -->
     <section id="photos">
         <h2>Photo Gallery</h2>
