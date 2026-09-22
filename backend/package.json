@@ -1,5 +1,5 @@
 {
-  "name": "saisenior-backend",
+  "name": "sai-senior-backend",
   "version": "1.0.0",
   "description": "Backend API for Volunteer Registration",
   "main": "server.js",
