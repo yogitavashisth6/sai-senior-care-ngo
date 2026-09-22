@@ -1,5 +1,5 @@
 {
-  "name": "sevasetu-backend",
+  "name": "saisenior-backend",
   "version": "1.0.0",
   "description": "Backend API for Volunteer Registration",
   "main": "server.js",
