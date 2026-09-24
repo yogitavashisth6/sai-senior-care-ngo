@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +26,12 @@
             color: #3b3b3b;
             background: radial-gradient(circle at top left, rgba(231, 220, 183, 0.25), transparent 35%), #fbf8ef;
         }
+	body {
+    	background-image: url('bg.jpg');
+    background-size: cover;          
+    background-repeat: no-repeat;    
+    background-position: center;   
+    background-attachment: fixed;  }
 
         h1, h2, h3, h4 {
             color: #2f4f4f;
@@ -454,7 +461,7 @@
             align-items: center;
             font-size: 17px;
             font-weight: 600;
-            color: #243f3d;
+            color: #2f4f4f;
             cursor: pointer;
             text-align: left;
             transition: background-color 0.2s ease;
@@ -462,6 +469,7 @@
 
         .faq-question:hover {
             background: linear-gradient(90deg, #f7f5eb, #ffffff);
+		color: #2f4f4f;
         }
 
         .faq-icon {
@@ -498,6 +506,7 @@
 
         .faq-item.active .faq-question {
             background: #f7f5eb;
+		color: #2f4f4f;
         }
 
         /* =========================================================
