@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2916,16 +2917,10 @@ document.addEventListener('DOMContentLoaded', () => {
    inbox, using EmailJS (a free service that emails directly from the
    browser - no backend/server code required for the email itself).
 
-   SETUP (one-time, takes ~5 minutes):
-   1. Create a free account at https://www.emailjs.com/
-   2. Add an "Email Service" (e.g. connect your Gmail) -> copy its Service ID.
-   3. Create an "Email Template" with variables matching the ones sent
-      below (full_name, contact_number, email, visit_date, time_slot,
-      participation_type, contribution_areas, message, etc.) -> copy its
-      Template ID.
-   4. Copy your Public Key from Account > API Keys.
-   5. Replace the three placeholders below: YOUR_PUBLIC_KEY,
-      YOUR_SERVICE_ID, YOUR_TEMPLATE_ID.
+   Configured for: Sai Senior Citizens Caring Foundation
+   Service ID:  yogita-cep
+   Template ID: template_vcogy3g
+   Public Key:  JMWHZ9Ks4Ahmc0fo6
 */
 
 (function () {
@@ -2933,7 +2928,7 @@ document.addEventListener('DOMContentLoaded', () => {
     script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
     script.onload = () => {
         if (window.emailjs) {
-            emailjs.init('YOUR_PUBLIC_KEY');
+            emailjs.init('JMWHZ9Ks4Ahmc0fo6');
         }
     };
     document.head.appendChild(script);
@@ -2974,7 +2969,7 @@ async function sendVolunteerEmailNotification(payload) {
         health_symptoms: payload.healthSymptoms
     };
 
-    return emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailParams);
+    return emailjs.send('yogita-cep', 'template_vcogy3g', emailParams);
 }
 
 </script>
