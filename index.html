@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,14 +23,24 @@
             padding: 0;
             line-height: 1.7;
             color: #3b3b3b;
-            background: radial-gradient(circle at top left, rgba(231, 220, 183, 0.25), transparent 35%), #fbf8ef;
+            background-image:
+                radial-gradient(circle at top left, rgba(231, 220, 183, 0.35), transparent 35%),
+                linear-gradient(rgba(251, 248, 239, 0.93), rgba(251, 248, 239, 0.93)),
+                url('bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
         }
-	body {
-    	background-image: url('bg.jpg');
-    background-size: cover;          
-    background-repeat: no-repeat;    
-    background-position: center;   
-    background-attachment: fixed;  }
+
+        /* Background image falls back to scroll (not fixed) on touch devices,
+           since background-attachment: fixed can be janky/unsupported on mobile */
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+            }
+        }
 
         h1, h2, h3, h4 {
             color: #2f4f4f;
@@ -86,6 +95,12 @@
             border-bottom: 1px solid rgba(255,255,255,0.12);
         }
 
+        nav .nav-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         nav h1 {
             margin: 0 0 12px 0;
             color: #ffffff;
@@ -95,6 +110,45 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.25);
         }
 
+        /* Hamburger toggle button - hidden on desktop by default */
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 12px;
+            padding: 0;
+        }
+
+        .hamburger-btn span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            border-radius: 2px;
+            background: #f4f1de;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger-btn.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger-btn.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
         nav ul {
             list-style: none;
             padding: 0;
@@ -102,6 +156,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            transition: max-height 0.35s ease;
         }
 
         nav ul li a {
@@ -510,6 +565,65 @@
         }
 
         /* =========================================================
+           VOLUNTEER REGISTRATION - EXPAND/COLLAPSE TOGGLE
+           ========================================================= */
+        .volunteer-toggle-btn {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #2f4f4f, #243f3d);
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 20px 25px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(36,63,61,0.15);
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .volunteer-toggle-btn:hover {
+            box-shadow: 0 10px 22px rgba(36,63,61,0.22);
+            transform: translateY(-2px);
+        }
+
+        .volunteer-toggle-icon {
+            font-size: 24px;
+            font-weight: 700;
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .volunteer-toggle-btn[aria-expanded="true"] .volunteer-toggle-icon {
+            transform: rotate(135deg);
+        }
+
+        .volunteer-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .volunteer-panel.open {
+            max-height: 8000px;
+        }
+
+        .volunteer-panel-inner {
+            padding-top: 20px;
+        }
+
+        /* =========================================================
            DONATION & FOOTER
            ========================================================= */
         #donation .card-box {
@@ -616,19 +730,46 @@
                 padding: 14px 15px;
             }
 
+            nav .nav-top {
+                justify-content: space-between;
+            }
+
             nav h1 {
-                font-size: 19px;
-                text-align: center;
+                font-size: 17px;
+                text-align: left;
+                margin-bottom: 0;
+            }
+
+            .hamburger-btn {
+                display: flex;
             }
 
             nav ul {
-                justify-content: center;
-                gap: 7px;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: 6px;
+                max-height: 0;
+                overflow: hidden;
+                margin-top: 0;
+            }
+
+            nav ul.open {
+                max-height: 600px;
+                margin-top: 14px;
+            }
+
+            nav ul li {
+                width: 100%;
             }
 
             nav ul li a {
-                font-size: 12px;
-                padding: 6px 10px;
+                display: block;
+                font-size: 14px;
+                padding: 12px 14px;
+                min-height: 44px;
+                box-sizing: border-box;
+                text-align: left;
             }
 
             #home {
@@ -660,7 +801,59 @@
                 height: 210px;
             }
         }
+
+        /* =========================================================
+           RESPONSIVE FORM IMPROVEMENTS
+           ========================================================= */
+        @media (max-width: 768px) {
+            form .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            form .grid-2 > div {
+                margin-bottom: 12px;
+            }
+
+            input, textarea, select {
+                font-size: 16px;      /* prevents iOS auto-zoom on focus */
+                padding: 13px 12px;
+                min-height: 46px;     /* comfortable touch target */
+                margin: 6px 0 16px 0;
+            }
+
+            textarea {
+                min-height: 90px;
+            }
+
+            input[type="checkbox"], input[type="radio"] {
+                width: 20px;
+                height: 20px;
+                min-width: 20px;
+                flex-shrink: 0;
+            }
+
+            .checkbox-label, .radio-label {
+                padding: 6px 0;
+                min-height: 44px;
+            }
+
+            .btn {
+                width: 100%;
+                min-height: 48px;
+                font-size: 16px;
+            }
+
+            form h4 {
+                font-size: 16px;
+            }
+
+            .form-label, label {
+                font-size: 14px;
+            }
+        }
     </style>
+</head>
 <body>
 
 
@@ -670,11 +863,28 @@
 
     <nav>
 
-        <h1>
-            Sai Senior Citizens Caring Foundation
-        </h1>
+        <div class="nav-top">
 
-        <ul>
+            <h1>
+                Sai Senior Citizens Caring Foundation
+            </h1>
+
+            <button
+                type="button"
+                class="hamburger-btn"
+                id="hamburgerBtn"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+                aria-controls="navMenu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+        <ul id="navMenu">
 
             <li>
                 <a href="#home">Home</a>
@@ -938,34 +1148,31 @@
         Volunteer Registration
     </h2>
 
-    <div class="faq-container">
+    <button
+        type="button"
+        class="volunteer-toggle-btn"
+        id="volunteerToggleBtn"
+        aria-expanded="false"
+        aria-controls="volunteerPanel"
+    >
+        <span>🤝 Register as a Volunteer</span>
+        <span class="volunteer-toggle-icon" id="volunteerToggleIcon">+</span>
+    </button>
 
-        <div class="faq-item">
+    <div class="volunteer-panel" id="volunteerPanel">
 
-            <button type="button" class="faq-question">
+      <div class="volunteer-panel-inner">
 
-                <span>
-                    🤝 How can I register as a volunteer?
-                </span>
+        <p style="margin-bottom: 20px;">
+            Share your valuable time, special skills, or a warm conversation
+            with our elders. Fill out the form below to join our family
+            of volunteers:
+        </p>
 
-                <span class="faq-icon">
-                    +
-                </span>
+        <div class="card-box" style="text-align: left;">
 
-            </button>
-
-
-            <div class="faq-answer" style="display: block; overflow: visible;">
-
-                <p style="margin-top: 15px;">
-                    Share your valuable time, special skills, or a warm conversation
-                    with our elders. Fill out the form below to join our family
-                    of volunteers:
-                </p>
-
-
-                <form id="volunteerForm"
-                      style="margin-top: 15px; text-align: left;">
+            <form id="volunteerForm"
+                  style="margin-top: 5px; text-align: left;">
 
                     <!-- 1. Personal Details -->
                     <h4 style="
@@ -1713,9 +1920,9 @@
 
                 </form>
 
-            </div>
-
         </div>
+
+      </div>
 
     </div>
 
@@ -1730,11 +1937,52 @@
         and happy celebrations at our foundation.
     </p>
 
-    <div class="photo-gallery">
+    <div class="photo-gallery" id="photoGallery">
 
-  <img src=security.jpg>
+        <div class="photo-box">
+            <img src="images/security.jpg" alt="Safe and Secure Premises">
+            <span>Our Premises</span>
+        </div>
+
+        <div class="photo-box">
+            <img src="images/diwali.jpg" alt="Diwali Celebration">
+            <span>Diwali Celebration</span>
+        </div>
+
+        <div class="photo-box">
+            <img src="images/birthday.jpeg" alt="Monthly Birthday Bash">
+            <span>Birthday Bash</span>
+        </div>
+
+        <div class="photo-box more-photos-tile" id="morePhotosTile">
+            <img src="images/cele.jpg" alt="More Photos">
+            <div class="more-photos-overlay">
+                <span class="more-photos-count" id="morePhotosCount">+3</span>
+                <span class="more-photos-text">View More</span>
+            </div>
+        </div>
+
+        <div class="photo-box extra-photo">
+            <img src="images/cultural.jpg" alt="Cultural Program">
+            <span>Cultural Programs</span>
+        </div>
+
+        <div class="photo-box extra-photo">
+            <img src="images/Home.jpg" alt="Daily Life at the Foundation">
+            <span>Daily Life</span>
+        </div>
+
+        <div class="photo-box extra-photo">
+            <img src="images/donation.jpg" alt="Community Support">
+            <span>Community Support</span>
+        </div>
 
     </div>
+
+    <p style="font-size: 13px; color: #777; text-align: center; margin-top: 10px;">
+        Tip: replace or add more <code>.photo-box</code> tiles inside
+        <code>#photoGallery</code> — the overflow badge count updates automatically.
+    </p>
 
 </section>
 
@@ -1745,61 +1993,28 @@
     <h2>Support Our Elders (Donation)</h2>
 
     <p>
-        Your generous contribution directly helps provide nutritious food,
-        essential medicines, and a comfortable haven for seniors in need.
+        Scan the QR code below with any UPI app to make a direct contribution.
     </p>
 
-    <div style="
-        margin-top: 20px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    ">
+    <div class="qr-card-container">
 
-        <div class="card-box" style="text-align: center;">
+        <img
+            src="images/donation.jpg"
+            alt="Scan to donate to Sai Senior Citizens Caring Foundation"
+            class="qr-code-img"
+        >
 
-            <h3>Make a Contribution</h3>
-
-            <p>
-                Sponsor living expenses, medical care, and daily essential
-                groceries for our senior residents.
-            </p>
-
-            <img
-                src="images/donation.jpg"
-                alt="Donate to Sai Senior Citizens Caring Foundation"
-                style="
-                    width: 100%;
-                    height: auto;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                "
-            >
-
-            <a href="#donation" style="text-decoration: none;">
-
-                <button
-                    class="btn"
-                    style="margin-top: 15px;"
-                >
-                    Donate Now
-                </button>
-
-            </a>
-
-        </div>
+        <p style="
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+        ">
+            *All donations are eligible for tax exemption benefits
+            (80G/12A certified).
+        </p>
 
     </div>
-
-    <p style="
-        margin-top: 20px;
-        font-size: 13px;
-        color: #666;
-        text-align: center;
-    ">
-        *All donations are eligible for tax exemption benefits
-        (80G/12A certified).
-    </p>
 
 </section>
 
@@ -2387,6 +2602,100 @@
 <script>
 
 /* =====================================================
+   HAMBURGER NAVIGATION HANDLER
+   ===================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    if (!hamburgerBtn || !navMenu) return;
+
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        hamburgerBtn.classList.toggle('open', isOpen);
+        hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    /* Close the menu automatically after a link is tapped (mobile) */
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+            hamburgerBtn.classList.remove('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+});
+
+
+/* =====================================================
+   PHOTO GALLERY - IMAGE GRID WITH OVERFLOW COUNTER
+   ===================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const gallery = document.getElementById('photoGallery');
+    const moreTile = document.getElementById('morePhotosTile');
+    const moreCount = document.getElementById('morePhotosCount');
+
+    if (!gallery || !moreTile) return;
+
+    /* Auto-calculate how many hidden photos remain and show it as "+N" */
+    const hiddenCount = gallery.querySelectorAll('.photo-box.extra-photo').length;
+
+    if (hiddenCount > 0 && moreCount) {
+        moreCount.textContent = '+' + hiddenCount;
+    } else {
+        /* No extra photos configured - hide the overlay entirely */
+        moreTile.classList.remove('more-photos-tile');
+        const overlay = moreTile.querySelector('.more-photos-overlay');
+        if (overlay) overlay.remove();
+    }
+
+    /* Clicking the "+N" tile reveals every hidden photo in the grid */
+    moreTile.addEventListener('click', () => {
+        gallery.querySelectorAll('.photo-box.extra-photo').forEach(el => {
+            el.classList.remove('extra-photo');
+        });
+        moreTile.classList.remove('more-photos-tile');
+        const overlay = moreTile.querySelector('.more-photos-overlay');
+        if (overlay) overlay.remove();
+    });
+
+});
+
+
+/* =====================================================
+   VOLUNTEER REGISTRATION - EXPAND/COLLAPSE TOGGLE
+   ===================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const volBtn = document.getElementById('volunteerToggleBtn');
+    const volPanel = document.getElementById('volunteerPanel');
+    const volIcon = document.getElementById('volunteerToggleIcon');
+
+    if (!volBtn || !volPanel) return;
+
+    volBtn.addEventListener('click', () => {
+        const isOpen = volPanel.classList.toggle('open');
+        volBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (volIcon) volIcon.textContent = isOpen ? '−' : '+';
+
+        if (isOpen) {
+            /* Give the panel a moment to expand, then scroll it into view */
+            setTimeout(() => {
+                volBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 150);
+        }
+    });
+
+});
+
+
+/* =====================================================
    FAQ ACCORDION HANDLER
    ===================================================== */
 
@@ -2573,6 +2882,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok && data.success) {
 
+                /* Also email a copy of this registration to the foundation */
+                sendVolunteerEmailNotification(payload);
+
                 alert(
                     'Thank you! Your registration has been saved to the database.'
                 );
@@ -2615,7 +2927,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+/* =====================================================
+   EMAIL NOTIFICATION ON VOLUNTEER REGISTRATION (EmailJS)
+   ===================================================== */
+
+/*
+   This sends a copy of every volunteer registration straight to your
+   inbox, using EmailJS (a free service that emails directly from the
+   browser - no backend/server code required for the email itself).
+
+   SETUP (one-time, takes ~5 minutes):
+   1. Create a free account at https://www.emailjs.com/
+   2. Add an "Email Service" (e.g. connect your Gmail) -> copy its Service ID.
+   3. Create an "Email Template" with variables matching the ones sent
+      below (full_name, contact_number, email, visit_date, time_slot,
+      participation_type, contribution_areas, message, etc.) -> copy its
+      Template ID.
+   4. Copy your Public Key from Account > API Keys.
+   5. Replace the three placeholders below: YOUR_PUBLIC_KEY,
+      YOUR_SERVICE_ID, YOUR_TEMPLATE_ID.
+*/
+
+(function () {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    script.onload = () => {
+        if (window.emailjs) {
+            emailjs.init('YOUR_PUBLIC_KEY');
+        }
+    };
+    document.head.appendChild(script);
+})();
+
+function sendVolunteerEmailNotification(payload) {
+
+    if (!window.emailjs) {
+        console.warn('EmailJS not loaded yet - skipping email notification.');
+        return;
+    }
+
+    const emailParams = {
+        full_name: payload.fullName,
+        contact_number: payload.contactNumber,
+        email: payload.email,
+        emergency_contact: payload.emergencyContact,
+        organization: payload.organization,
+        profession: payload.profession,
+        visit_date: payload.visitDate,
+        time_slot: payload.timeSlot,
+        participation_type: payload.participationType,
+        group_members: payload.groupMembers,
+        additional_group_details: payload.additionalGroupDetails,
+        contribution_areas: (payload.contributionAreas || []).join(', '),
+        past_experience: payload.pastExperience,
+        health_symptoms: payload.healthSymptoms
+    };
+
+    emailjs.send('JMWHZ9Ks4Ahmc0fo6', 'JMWHZ9Ks4Ahmc0fo6', JMWHZ9Ks4Ahmc0fo6)
+        .then(() => {
+            console.log('Volunteer registration email notification sent.');
+        })
+        .catch((err) => {
+            console.error('EmailJS notification failed:', err);
+        });
+}
+
 </script>
 
 </body>
 </html>
+<script async src="/.netlify/scripts/hud?variant=public" data-nf-variant="public" data-netlify-site-id="eacbaa2b-6c10-43ef-8240-e3598da8d7ef" data-app-host="app.netlify.com"></script>
