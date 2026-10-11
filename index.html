@@ -10,15 +10,19 @@
     <style>
 
         /* =========================================================
-           COLOR THEME
+           BASE
            ========================================================= */
 
-        * {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
 
         body {
@@ -29,6 +33,12 @@
             color: #A0522D;
             background: #FFFFFF;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        img,
+        iframe {
+            max-width: 100%;
         }
 
         h1,
@@ -38,6 +48,11 @@
             color: #713600;
             font-weight: 600;
             letter-spacing: 0.2px;
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: clamp(24px, 5vw, 32px);
         }
 
         section {
@@ -46,11 +61,128 @@
             margin: 25px auto;
             background: #F4A460;
             border-radius: 15px;
+            scroll-margin-top: 90px;
         }
 
         /* =========================================================
-           GENERAL ELEMENTS
+           NAVIGATION
            ========================================================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #713600;
+            padding: 14px 24px;
+            box-shadow: 0 4px 14px rgba(113, 54, 0, 0.25);
+        }
+
+        nav .nav-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 22px;
+            color: #F4A460;
+            text-align: center;
+        }
+
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            padding: 0;
+            background: transparent;
+            border: 1px solid rgba(244, 164, 96, 0.5);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .hamburger-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #F4A460;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger-btn.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger-btn.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 12px 0 0 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px 8px;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 8px 12px;
+            color: #F4A460;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus-visible {
+            background: #F4A460;
+            color: #713600;
+        }
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        #home {
+            padding: 15px;
+        }
+
+        .hero-banner {
+            min-height: 460px;
+            padding: 70px 24px;
+            border-radius: 18px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Add a background photo here if you have one, e.g.
+               background: linear-gradient(rgba(60,25,0,.55), rgba(60,25,0,.55)), url('images/hero.jpg') center/cover; */
+            background: linear-gradient(135deg, #713600, #A0522D);
+        }
+
+        .hero-banner h2 {
+            color: #FFFFFF;
+            font-size: clamp(28px, 7vw, 44px);
+            margin: 0 0 16px 0;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        }
 
         .hero-banner p {
             color: #F4A460;
@@ -78,44 +210,39 @@
         }
 
         /* =========================================================
-           EVENTS & FESTIVALS
+           GENERAL ELEMENTS
            ========================================================= */
 
-        .events-grid {
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 20px;
-            margin-top: 20px;
         }
 
-        .event-card {
+        .card-box {
             background: #ffffff;
+            padding: 20px;
             border-radius: 12px;
-            overflow: hidden;
-            text-align: center;
-            box-shadow: 0 5px 18px rgba(36, 63, 61, 0.09);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #E2B785;
+            box-shadow: 0 4px 12px rgba(113, 54, 0, 0.06);
         }
 
-        .event-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 12px 25px rgba(36, 63, 61, 0.14);
-        }
-
-        .event-card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .event-card span {
-            display: block;
-            padding: 12px;
-            font-size: 14px;
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #713600;
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
             font-weight: 600;
-            color: #243f3d;
-            background: linear-gradient(135deg, #ffffff, #f7f3e8);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #A0522D;
         }
 
         /* =========================================================
@@ -157,6 +284,47 @@
         }
 
         /* =========================================================
+           EVENTS & FESTIVALS
+           ========================================================= */
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .event-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(36, 63, 61, 0.09);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(36, 63, 61, 0.14);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-card span {
+            display: block;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #243f3d;
+            background: linear-gradient(135deg, #ffffff, #f7f3e8);
+        }
+
+        /* =========================================================
            PHOTO GALLERY
            ========================================================= */
 
@@ -167,7 +335,7 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
             gap: 16px;
             margin-top: 20px;
         }
@@ -201,7 +369,8 @@
         }
 
         .see-more-btn {
-            padding: 10px 24px;
+            padding: 12px 28px;
+            min-height: 44px;
             font-size: 16px;
             font-weight: 600;
             color: #fff;
@@ -229,12 +398,14 @@
 
         .donation-tab-btn {
             padding: 12px 24px;
+            min-height: 44px;
             border-radius: 10px;
             border: 1px solid #2f4f4f;
             background: transparent;
             color: #2f4f4f;
             font-weight: 600;
             font-size: 15px;
+            font-family: inherit;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -273,6 +444,7 @@
 
         .qr-card-container {
             max-width: 460px;
+            width: 100%;
             margin: 0 auto;
             background: linear-gradient(145deg, #1d2b29, #15201e);
             border: 1px solid rgba(212, 163, 115, 0.3);
@@ -281,7 +453,6 @@
             color: #f4f1de;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -300,6 +471,7 @@
         .qr-code-wrapper img {
             width: 200px;
             height: 200px;
+            max-width: 100%;
             display: block;
         }
 
@@ -321,6 +493,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 10px;
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid rgba(212, 163, 115, 0.25);
             border-radius: 10px;
@@ -335,6 +508,7 @@
             color: #ead8ad;
             letter-spacing: 0.5px;
             word-break: break-all;
+            text-align: left;
         }
 
         .copy-btn {
@@ -342,6 +516,7 @@
             color: #121212;
             border: none;
             padding: 8px 18px;
+            min-height: 40px;
             border-radius: 8px;
             font-weight: 700;
             font-size: 13px;
@@ -364,7 +539,7 @@
 
         .inkind-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 20px;
         }
 
@@ -373,6 +548,199 @@
             align-items: flex-start;
             gap: 16px;
             background: linear-gradient(145deg, #1d2b29, #15201e);
+            border-left: 4px solid #d4a373;
+            border-radius: 12px;
+            padding: 18px;
+            color: #f4f1de;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .inkind-icon {
+            font-size: 26px;
+            line-height: 1;
+            background: rgba(212, 163, 115, 0.15);
+            padding: 10px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .inkind-details h4 {
+            margin: 0 0 6px 0;
+            color: #d4a373;
+            font-size: 16px;
+        }
+
+        .inkind-details p {
+            margin: 0;
+            font-size: 13px;
+            color: #cfd8d6;
+            line-height: 1.5;
+        }
+
+        /* =========================================================
+           FAQ
+           ========================================================= */
+
+        .faq-container {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(113, 54, 0, 0.06);
+            border: 1px solid #E2B785;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 25px;
+            background: #FFFFFF;
+            border: none;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #713600;
+            cursor: pointer;
+            text-align: left;
+            transition: background-color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background: #F4A460;
+            color: #713600;
+        }
+
+        .faq-question:focus-visible {
+            outline: 3px solid #713600;
+            outline-offset: -3px;
+        }
+
+        .faq-icon {
+            font-size: 22px;
+            color: #713600;
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F4A460;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 25px;
+            color: #A0522D;
+            font-size: 15px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            padding: 0 25px 20px 25px;
+        }
+
+        .faq-item.active {
+            border-left: 4px solid #713600;
+            box-shadow: 0 8px 22px rgba(113, 54, 0, 0.12);
+        }
+
+        .faq-item.active .faq-question {
+            background: #F4A460;
+            color: #713600;
+        }
+
+        /* =========================================================
+           VOLUNTEER REGISTRATION
+           ========================================================= */
+
+        .volunteer-toggle-btn {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            background: #713600;
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 20px 25px;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(113, 54, 0, 0.18);
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .volunteer-toggle-btn:hover {
+            background: #A0522D;
+            box-shadow: 0 10px 22px rgba(113, 54, 0, 0.24);
+            transform: translateY(-2px);
+        }
+
+        .volunteer-toggle-icon {
+            font-size: 24px;
+            font-weight: 700;
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .volunteer-toggle-btn[aria-expanded="true"] .volunteer-toggle-icon {
+            transform: rotate(135deg);
+        }
+
+        .volunteer-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .volunteer-panel.open {
+            max-height: 8000px;
+        }
+
+        .volunteer-panel-inner {
+            padding-top: 20px;
+        }
+
+        /* =========================================================
+           FORM
+           ========================================================= */
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            min-width: 0;
+            padding: 12px;
+            45deg, #1d2b29, #15201e);
             border-left: 4px solid #d4a373;
             border-radius: 12px;
             padding: 18px;
@@ -1494,7 +1862,7 @@
         <span>Celebration</span>
       </div>
       <div class="event-card">
-        <img src="./images/birthday.jpg" alt="Monthly Birthday Bash">
+        <img src="./images/bcol.jpg" alt="Monthly Birthday Bash">
         <span>Monthly Birthday Bash</span>
       </div>
       <div class="event-card">
